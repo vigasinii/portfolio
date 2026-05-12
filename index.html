@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vigasini K — Engineer & Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  /* Pastel palette */
+  --rose:#e8a4b0;
+  --rose-lt:#fdf0f3;
+  --rose-md:#f5cfd6;
+  --rose-deep:#b5536a;
+
+  --lavender:#b8aadd;
+  --lavender-lt:#f2f0fb;
+  --lavender-deep:#6c5fa8;
+
+  --sage:#a8c9b0;
+  --sage-lt:#f0f7f2;
+  --sage-deep:#4a7e5a;
+
+  --sky:#a4c8e8;
+  --sky-lt:#eef6fd;
+  --sky-deep:#3a7aaa;
+
+  --peach:#f0c49a;
+  --peach-lt:#fdf6ef;
+  --peach-deep:#b06a28;
+
+  --mint:#9fd4c8;
+  --mint-lt:#eef8f6;
+
+  /* Neutrals */
+  --ink:#1c1826;
+  --ink2:#2d2840;
+  --body:#3d3858;
+  --muted:#8a86a8;
+  --faint:#c0bcd8;
+  --border:#e2dff0;
+  --border-lt:#eceaf8;
+  --bg:#fafafe;
+  --bg2:#f4f2fc;
+  --white:#ffffff;
+
+  --serif:'Fraunces',serif;
+  --display:'Playfair Display',serif;
+  --mono:'Space Mono',monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --sh:0 1px 3px rgba(28,24,38,.04),0 4px 16px rgba(28,24,38,.05);
+  --sh-md:0 4px 24px rgba(28,24,38,.09);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:20px 64px;background:rgba(250,250,254,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-lt);}
+.nav-logo{font-family:var(--display);font-size:20px;font-style:italic;color:var(--ink);text-decoration:none;}
+.nav-logo span{color:var(--rose-deep);}
+.nav-links{display:flex;gap:28px;}
+.nav-link{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .18s;}
+.nav-link:hover{color:var(--ink);}
+.nav-cta{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--bg);padding:9px 20px;border-radius:2px;text-decoration:none;transition:opacity .18s;}
+.nav-cta:hover{opacity:.8;}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding:96px 64px 80px;align-items:center;gap:60px;position:relative;overflow:hidden;background:linear-gradient(135deg,#fdf0f3 0%,#f2f0fb 35%,#eef6fd 70%,#f0f7f2 100%);}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,rgba(184,170,221,.06) 0,rgba(184,170,221,.06) 1px,transparent 1px,transparent 72px),repeating-linear-gradient(0deg,rgba(184,170,221,.04) 0,rgba(184,170,221,.04) 1px,transparent 1px,transparent 72px);pointer-events:none;}
+.hero::after{content:'';position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(232,164,176,.22) 0%,transparent 70%);top:-80px;right:-60px;pointer-events:none;}
+
+.hero-left{position:relative;z-index:1;}
+.h-eye{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:28px;}
+.h-eye::before{content:'';width:28px;height:1px;background:var(--rose);}
+h1.h-name{font-family:var(--display);font-size:clamp(58px,6vw,90px);font-weight:400;line-height:.95;letter-spacing:-.03em;color:var(--ink);margin-bottom:12px;}
+h1.h-name em{font-style:italic;color:var(--lavender-deep);}
+.h-role{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);line-height:1.9;margin-bottom:36px;}
+.h-role strong{color:var(--body);font-weight:700;}
+.h-desc{font-family:var(--serif);font-size:16px;color:var(--body);font-weight:300;line-height:1.82;max-width:420px;margin-bottom:44px;opacity:.85;}
+.h-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-s{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:opacity .18s,transform .2s var(--ease);}
+.btn-s:hover{opacity:.8;transform:translateY(-1px);}
+.btn-o{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(255,255,255,.7);color:var(--muted);border:1.5px solid var(--border);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:border-color .18s,color .18s,background .18s;}
+.btn-o:hover{border-color:var(--lavender);color:var(--ink);background:var(--lavender-lt);}
+
+.hero-right{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px;}
+.sr{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.hs{background:rgba(255,255,255,.82);border:1px solid var(--border);border-radius:10px;padding:22px 20px;box-shadow:var(--sh);backdrop-filter:blur(8px);}
+.sr:nth-child(1) .hs:nth-child(1){border-top:3px solid var(--rose-md);}
+.sr:nth-child(1) .hs:nth-child(2){border-top:3px solid var(--lavender);}
+.sr:nth-child(2) .hs:nth-child(1){border-top:3px solid var(--sage);}
+.sr:nth-child(2) .hs:nth-child(2){border-top:3px solid var(--sky);}
+.hs-n{font-family:var(--display);font-size:40px;font-style:italic;color:var(--ink);line-height:1;margin-bottom:6px;}
+.hs-n span{color:var(--rose-deep);}
+.hs-l{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.07em;line-height:1.55;}
+.hs.w{grid-column:1/-1;border-top:3px solid var(--peach);background:rgba(255,255,255,.88);}
+.hs.w .hs-n{font-size:13.5px;font-family:var(--mono);font-style:normal;letter-spacing:.03em;color:var(--body);line-height:1.7;}
+
+.scroll-h{position:absolute;bottom:40px;left:64px;display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);animation:bob 2.8s ease-in-out infinite;}
+.scroll-h::before{content:'';width:1px;height:36px;background:var(--border);}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* MARQUEE */
+.mq{overflow:hidden;background:var(--ink);padding:12px 0;}
+.mq-t{display:flex;width:max-content;animation:mqs 22s linear infinite;}
+.mq-i{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,254,.4);padding:0 32px;white-space:nowrap;}
+.mq-i span{color:var(--rose-md);padding-left:32px;}
+@keyframes mqs{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:108px 64px;}
+.s-lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:12px;display:flex;align-items:center;gap:14px;}
+.s-lbl::after{content:'';flex:1;height:1px;background:var(--border);}
+.s-h{font-family:var(--display);font-size:clamp(36px,4vw,54px);font-weight:400;line-height:1.05;letter-spacing:-.025em;color:var(--ink);margin-bottom:56px;}
+.s-h em{color:var(--lavender-deep);font-style:italic;}
+
+/* ABOUT */
+.about{background:var(--white);border-top:1px solid var(--border-lt);border-bottom:1px solid var(--border-lt);}
+.about-g{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.about-g p{font-family:var(--serif);font-size:16px;color:var(--body);line-height:1.85;margin-bottom:22px;opacity:.8;font-weight:300;}
+.about-g p strong{color:var(--ink);opacity:1;font-weight:700;}
+.sk-w{margin-top:36px;}
+.sk-c{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.sk-l{display:flex;flex-wrap:wrap;gap:7px;}
+.st{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:5px 12px;border:1px solid var(--border);border-radius:20px;color:var(--muted);background:var(--bg2);transition:border-color .18s,color .18s,background .18s;}
+.st:nth-child(3n+1):hover{border-color:var(--rose);color:var(--rose-deep);background:var(--rose-lt);}
+.st:nth-child(3n+2):hover{border-color:var(--lavender);color:var(--lavender-deep);background:var(--lavender-lt);}
+.st:nth-child(3n+3):hover{border-color:var(--sage);color:var(--sage-deep);background:var(--sage-lt);}
+
+/* TIMELINE */
+.tl{display:flex;flex-direction:column;position:relative;}
+.tl::before{content:'';position:absolute;left:14px;top:6px;bottom:6px;width:1px;background:var(--border);}
+.tle{display:flex;gap:28px;padding-bottom:36px;position:relative;}
+.tld{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px;position:relative;z-index:1;background:var(--rose);box-shadow:0 0 0 3px var(--white),0 0 0 5px var(--rose-md);}
+.tld.dim{background:var(--faint);box-shadow:0 0 0 3px var(--white),0 0 0 5px var(--border);}
+.tl-yr{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:4px;}
+.tl-co{font-family:var(--display);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.tl-ro{font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.tl-de{font-family:var(--serif);font-size:13px;color:var(--body);line-height:1.7;opacity:.7;font-weight:300;}
+
+/* PROJECTS */
+.projects{background:var(--bg2);}
+.proj-inner{max-width:1200px;margin:0 auto;}
+.proj-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.pc{background:var(--white);padding:32px 28px;display:flex;flex-direction:column;text-decoration:none;position:relative;transition:background .22s;}
+.pc.s2{grid-column:span 2;}
+.pi{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin-bottom:16px;}
+.pe{font-size:26px;margin-bottom:14px;line-height:1;}
+.pt{font-family:var(--display);font-size:22px;font-style:italic;color:var(--ink);margin-bottom:7px;line-height:1.1;}
+.pc.s2 .pt{font-size:28px;}
+.pp{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:13px;width:fit-content;}
+.pp::before{content:'●';font-size:6px;}
+.pd{font-family:var(--serif);font-size:13px;color:var(--body);line-height:1.72;flex:1;margin-bottom:22px;opacity:.72;font-weight:300;}
+.pl{display:inline-flex;align-items:center;gap:6px;margin-top:auto;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;transition:gap .2s var(--ease);}
+.pc:hover .pl{gap:10px;}
+
+.pc:nth-child(1){--ca:#fdf0f3;--ct-bg:rgba(232,164,176,.12);--ct-c:#b5536a;--cl:#b5536a;}
+.pc:nth-child(2){--ca:#f2f0fb;--ct-bg:rgba(184,170,221,.12);--ct-c:#6c5fa8;--cl:#6c5fa8;}
+.pc:nth-child(3){--ca:#eef6fd;--ct-bg:rgba(164,200,232,.12);--ct-c:#3a7aaa;--cl:#3a7aaa;}
+.pc:nth-child(4){--ca:#f0f7f2;--ct-bg:rgba(168,201,176,.12);--ct-c:#4a7e5a;--cl:#4a7e5a;}
+.pc:nth-child(5){--ca:#fdf6ef;--ct-bg:rgba(240,196,154,.12);--ct-c:#b06a28;--cl:#b06a28;}
+.pc:nth-child(6){--ca:#eef8f6;--ct-bg:rgba(159,212,200,.12);--ct-c:#2e7a6e;--cl:#2e7a6e;}
+.pc:nth-child(7){--ca:#f2f0fb;--ct-bg:rgba(184,170,221,.12);--ct-c:#6c5fa8;--cl:#6c5fa8;}
+.pc:nth-child(8){--ca:#fdf0f3;--ct-bg:rgba(232,164,176,.12);--ct-c:#b5536a;--cl:#b5536a;}
+
+.pc:hover{background:var(--ca);}
+.pp{background:var(--ct-bg);color:var(--ct-c);}
+.pl{color:var(--cl);}
+
+/* TECH */
+.tech-s{background:var(--white);border-top:1px solid var(--border-lt);}
+.tech-i{max-width:1140px;margin:0 auto;}
+.tg{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+.tt{border:1px solid var(--border);border-radius:10px;padding:20px 16px;text-align:center;box-shadow:var(--sh);transition:box-shadow .2s,transform .2s;}
+.tt:nth-child(5n+1){background:var(--rose-lt);border-color:var(--rose-md);}
+.tt:nth-child(5n+2){background:var(--lavender-lt);border-color:#d5d0f0;}
+.tt:nth-child(5n+3){background:var(--sage-lt);border-color:#c8e0ce;}
+.tt:nth-child(5n+4){background:var(--sky-lt);border-color:#c0dff2;}
+.tt:nth-child(5n+5){background:var(--peach-lt);border-color:#f0d8bc;}
+.tt:hover{box-shadow:var(--sh-md);transform:translateY(-2px);}
+.tt-e{font-size:22px;margin-bottom:9px;}
+.tt-n{font-family:var(--display);font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.tt-c{font-family:var(--mono);font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);}
+
+/* ACHIEVEMENTS */
+.ach{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-top:1px solid var(--border-lt);}
+.ach-i{max-width:1140px;margin:0 auto;}
+.ag{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.ac{border:1px solid var(--border);border-radius:10px;padding:30px 26px;position:relative;overflow:hidden;box-shadow:var(--sh);transition:box-shadow .22s,transform .22s;}
+.ac:nth-child(1){background:var(--rose-lt);border-color:var(--rose-md);}
+.ac:nth-child(2){background:var(--lavender-lt);border-color:#d5d0f0;}
+.ac:nth-child(3){background:var(--sage-lt);border-color:#c8e0ce;}
+.ac:hover{box-shadow:var(--sh-md);transform:translateY(-2px);}
+.ac::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.ac:nth-child(1)::after{background:linear-gradient(90deg,var(--rose),var(--rose-md),transparent);}
+.ac:nth-child(2)::after{background:linear-gradient(90deg,var(--lavender),#d5d0f0,transparent);}
+.ac:nth-child(3)::after{background:linear-gradient(90deg,var(--sage),#c8e0ce,transparent);}
+.ac-yr{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;}
+.ac:nth-child(1) .ac-yr{color:var(--rose-deep);}
+.ac:nth-child(2) .ac-yr{color:var(--lavender-deep);}
+.ac:nth-child(3) .ac-yr{color:var(--sage-deep);}
+.ac-e{font-size:26px;margin-bottom:12px;}
+.ac-t{font-family:var(--display);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.3;}
+.ac-d{font-family:var(--serif);font-size:13px;color:var(--body);line-height:1.65;opacity:.75;font-weight:300;}
+.ac-b{position:absolute;top:20px;right:20px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;}
+.ac:nth-child(1) .ac-b{background:rgba(232,164,176,.2);color:var(--rose-deep);}
+.ac:nth-child(2) .ac-b{background:rgba(184,170,221,.2);color:var(--lavender-deep);}
+.ac:nth-child(3) .ac-b{background:rgba(168,201,176,.2);color:var(--sage-deep);}
+
+/* CONTACT */
+.contact{background:var(--ink);padding:120px 64px;text-align:center;}
+.c-i{max-width:640px;margin:0 auto;}
+.contact .s-lbl{color:rgba(250,250,254,.28);justify-content:center;}
+.contact .s-lbl::before{content:'';flex:1;height:1px;background:rgba(250,250,254,.07);}
+.contact .s-lbl::after{background:rgba(250,250,254,.07);}
+.c-h{font-family:var(--display);font-size:clamp(38px,5vw,56px);font-weight:400;font-style:italic;color:var(--bg);line-height:1.04;letter-spacing:-.025em;margin-bottom:16px;}
+.c-h em{color:var(--rose-md);}
+.c-sub{font-family:var(--serif);font-size:16px;color:rgba(250,250,254,.38);line-height:1.8;margin-bottom:48px;font-weight:300;}
+.c-btns{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;}
+.cb-p{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;background:var(--rose);color:var(--ink);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;text-decoration:none;border-radius:2px;transition:opacity .18s,transform .2s var(--ease);}
+.cb-p:hover{opacity:.88;transform:translateY(-1px);}
+.cb-g{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:transparent;border:1px solid rgba(250,250,254,.14);color:rgba(250,250,254,.45);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:border-color .18s,color .18s;}
+.cb-g:hover{border-color:var(--lavender);color:var(--bg);}
+
+/* FOOTER */
+footer{background:var(--ink);padding:28px 64px;border-top:1px solid rgba(250,250,254,.06);display:flex;align-items:center;justify-content:space-between;}
+.f-n{font-family:var(--display);font-size:16px;font-style:italic;color:rgba(250,250,254,.3);}
+.f-c{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:rgba(250,250,254,.2);}
+.f-l{display:flex;gap:22px;}
+.f-a{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,250,254,.22);text-decoration:none;transition:color .18s;}
+.f-a:hover{color:var(--rose-md);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.rv.in{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Vigasini<span>.</span></a>
+  <div class="nav-links">
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link" href="#projects">Work</a>
+    <a class="nav-link" href="#achievements">Awards</a>
+    <a class="nav-link" href="#contact">Contact</a>
+  </div>
+  <a class="nav-cta" href="mailto:vigasinimit@gmail.com">Hire me →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="h-eye">Available · Chennai / London Jun 2026</div>
+    <h1 class="h-name">Vigasini<br><em>Kamalanathan</em></h1>
+    <p class="h-role">
+      Automation Engineer, <strong>TechQuaint</strong> &nbsp;·&nbsp; Final year CS @ MIT, Anna University<br>
+      Builder &nbsp;·&nbsp; Freelancer &nbsp;·&nbsp; Google Girl Hackathon Finalist
+    </p>
+    <p class="h-desc">I build production-grade scraping infrastructure, AI-powered dashboards, and SaaS products that actually ship. Full-stack by necessity, data-driven by instinct.</p>
+    <div class="h-btns">
+      <a class="btn-s" href="#projects">View my work →</a>
+      <a class="btn-o" href="https://github.com/vigasinii" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn-o" href="https://linkedin.com/in/vigasinikamalanathan" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="sr">
+      <div class="hs"><div class="hs-n">58<span>k</span></div><div class="hs-l">Applicants outranked at Google Girl Hackathon (top 78)</div></div>
+      <div class="hs"><div class="hs-n">92<span>%</span></div><div class="hs-l">ML accuracy — MediScope RAG diagnostic pipeline</div></div>
+    </div>
+    <div class="sr">
+      <div class="hs"><div class="hs-n">8<span>+</span></div><div class="hs-l">Live products shipped and deployed in production</div></div>
+      <div class="hs"><div class="hs-n">3</div><div class="hs-l">Countries — India · UAE · USA</div></div>
+    </div>
+    <div class="hs w"><div class="hs-n">Python · FastAPI · SQL · n8n · AWS · LLMs · React</div><div class="hs-l" style="margin-top:7px">Core stack · scraping · automation · AI pipelines · full-stack</div></div>
+  </div>
+  <div class="scroll-h">Scroll to explore</div>
+</div>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-t">
+    <span class="mq-i">Automation Engineering</span><span class="mq-i">AI &amp; LLM Pipelines<span>✦</span></span><span class="mq-i">Web Scraping Infra</span><span class="mq-i">SaaS Builder<span>✦</span></span><span class="mq-i">FastAPI · Python · n8n</span><span class="mq-i">Price Intelligence<span>✦</span></span><span class="mq-i">RAG Systems</span><span class="mq-i">Google Girl Hackathon Finalist<span>✦</span></span>
+    <span class="mq-i">Automation Engineering</span><span class="mq-i">AI &amp; LLM Pipelines<span>✦</span></span><span class="mq-i">Web Scraping Infra</span><span class="mq-i">SaaS Builder<span>✦</span></span><span class="mq-i">FastAPI · Python · n8n</span><span class="mq-i">Price Intelligence<span>✦</span></span><span class="mq-i">RAG Systems</span><span class="mq-i">Google Girl Hackathon Finalist<span>✦</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-g">
+    <div>
+      <div class="s-lbl rv">01 — About me</div>
+      <h2 class="s-h rv d1">Building things<br>that <em>actually work.</em></h2>
+      <p class="rv d2">I'm a <strong>final-year CS student at MIT, Anna University</strong> graduating May 2026 — currently building production automation systems at <strong>TechQuaint</strong>. Before that I shipped data and AI pipelines at GET International in Dubai, and OutreachOS at Elev(Ai)tion in Wyoming.</p>
+      <p class="rv d3">My work sits at the intersection of <strong>backend engineering, data intelligence, and AI</strong> — from anti-bot scraping infrastructure to LLM-powered dashboards to billing automation. I don't prototype for demo days; I ship for production.</p>
+      <div class="sk-w rv d4">
+        <div class="sk-c">Stack &amp; tools</div>
+        <div class="sk-l">
+          <span class="st">Python</span><span class="st">FastAPI</span><span class="st">Flask</span><span class="st">Node.js</span><span class="st">PostgreSQL</span><span class="st">MySQL</span><span class="st">SQL / pandas</span><span class="st">n8n</span><span class="st">AWS IoT</span><span class="st">DynamoDB</span><span class="st">Lambda</span><span class="st">LLaMA 3.3</span><span class="st">RAG Pipelines</span><span class="st">Groq API</span><span class="st">Playwright</span><span class="st">Zoho API</span><span class="st">Slack API</span><span class="st">React</span><span class="st">Neon DB</span><span class="st">Vercel</span><span class="st">Render</span><span class="st">Firebase</span><span class="st">Git / Linux</span>
+        </div>
+      </div>
+    </div>
+    <div class="tl rv d2">
+      <div class="tle">
+        <div class="tld"></div>
+        <div>
+          <div class="tl-yr">Jan 2026 — Present</div>
+          <div class="tl-co">TechQuaint</div>
+          <div class="tl-ro">Automation Engineer · Indore, Hybrid</div>
+          <div class="tl-de">Production scraping infra via Syphoon API. Zoho billing automation. BlinkIQ + PriceIQ dashboards. SQL competitive intelligence for Amazon India.</div>
+        </div>
+      </div>
+      <div class="tle">
+        <div class="tld dim"></div>
+        <div>
+          <div class="tl-yr">May – Jul 2025</div>
+          <div class="tl-co">GET International FZCO</div>
+          <div class="tl-ro">Data &amp; AI Engineer Intern · Dubai</div>
+          <div class="tl-de">ETL pipelines, Gemini LLM integration, real-time analytics for enterprise ops across Dubai and Singapore.</div>
+        </div>
+      </div>
+      <div class="tle">
+        <div class="tld dim"></div>
+        <div>
+          <div class="tl-yr">May – Jul 2024</div>
+          <div class="tl-co">Elev(Ai)tion Unlimited LLC</div>
+          <div class="tl-ro">Data &amp; Full Stack Intern · Wyoming, Remote</div>
+          <div class="tl-de">Built OutreachOS with LLaMA 3.3-70B + Groq, PostgreSQL backend, REST APIs, SQL analytics, and scraping pipelines.</div>
+        </div>
+      </div>
+      <div class="tle">
+        <div class="tld dim"></div>
+        <div>
+          <div class="tl-yr">2022 — 2026</div>
+          <div class="tl-co">MIT, Anna University</div>
+          <div class="tl-ro">B.E. Computer Science · Chennai</div>
+          <div class="tl-de">Graduating May 2026. ML research in dysgraphia detection and fuzzy logic. Google Hackathon Finalist.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="proj-inner">
+    <div class="s-lbl rv">02 — Selected work</div>
+    <h2 class="s-h rv d1">Products shipped<br><em>to production.</em></h2>
+    <div class="proj-g">
+
+      <a class="pc s2 rv" href="https://syphoon-blinkit.onrender.com/" target="_blank" rel="noopener">
+        <div class="pi">001 — Featured</div>
+        <div class="pe">📊</div>
+        <div class="pt">BlinkIQ · Syphoon Intelligence</div>
+        <div class="pp">Price Intelligence · Live Production</div>
+        <div class="pd">End-to-end Blinkit quick commerce price intelligence. Tracks 24 SKUs across 6 cities and 48 pincodes in real-time. Trend analysis, stockout alerts, MRP breach detection, and discount floor tracking — built on FastAPI, Neon DB, and Syphoon scraping API. Flagship system at TechQuaint.</div>
+        <div class="pl">View live dashboard →</div>
+      </a>
+
+      <a class="pc rv d1" href="https://get-thj1.onrender.com/" target="_blank" rel="noopener">
+        <div class="pi">002</div>
+        <div class="pe">⚙️</div>
+        <div class="pt">OpsFlow — GET International</div>
+        <div class="pp">Enterprise Dashboard · Live</div>
+        <div class="pd">Internal ops dashboard for GET International FZCO. Sales pipeline, PO management, invoicing, inventory, logistics — serving clients like Dubai Police HQ across two regions.</div>
+        <div class="pl">Open dashboard →</div>
+      </a>
+
+      <a class="pc rv" href="https://outreachos-1.onrender.com/" target="_blank" rel="noopener">
+        <div class="pi">003</div>
+        <div class="pe">🎯</div>
+        <div class="pt">OutreachOS</div>
+        <div class="pp">B2B SaaS · LLM-Powered · Live</div>
+        <div class="pd">LinkedIn outreach intelligence platform. LLaMA 3.3-70B via Groq for AI message drafts + live web search. PostgreSQL analytics, LinkedIn autofill parser, 3.2× higher reply rates.</div>
+        <div class="pl">Launch app →</div>
+      </a>
+
+      <a class="pc rv d1" href="https://lu-omega-sepia.vercel.app/" target="_blank" rel="noopener">
+        <div class="pi">004</div>
+        <div class="pe">🛡️</div>
+        <div class="pt">LunaVii</div>
+        <div class="pp">IoT · Child Safety · AWS</div>
+        <div class="pd">ML-powered child safety platform. Smart bracelet detects 7 emergency types (fever, panic, drowning, forced removal) in &lt;3s — 87.3% accuracy. AWS IoT Core, DynamoDB streams, Isolation Forest + Random Forest.</div>
+        <div class="pl">View platform →</div>
+      </a>
+
+      <a class="pc rv d2" href="https://changelog-one-lime.vercel.app/" target="_blank" rel="noopener">
+        <div class="pi">005</div>
+        <div class="pe">📋</div>
+        <div class="pt">Changelog</div>
+        <div class="pp">Open Source · Self-hosted · Live</div>
+        <div class="pd">Release notes tool for teams who ship fast. Markdown editor, shareable public URLs, draft before publish, SSR public pages. Vercel + Turso, MIT license.</div>
+        <div class="pl">View project →</div>
+      </a>
+
+      <a class="pc rv" href="https://api-key-vault-mauve.vercel.app/" target="_blank" rel="noopener">
+        <div class="pi">006</div>
+        <div class="pe">🔐</div>
+        <div class="pt">API Key Vault</div>
+        <div class="pp">Dev Tool · Open Source · Live</div>
+        <div class="pd">Self-hosted API key manager with masked display, expiry tracking, one-click copy, usage timestamps, and tag search. SQLite/Turso backend. Deploys to Vercel in 5 minutes.</div>
+        <div class="pl">Open vault →</div>
+      </a>
+
+      <a class="pc rv d1" href="https://meridian-nu-beryl.vercel.app/" target="_blank" rel="noopener">
+        <div class="pi">007</div>
+        <div class="pe">📣</div>
+        <div class="pt">Meridian</div>
+        <div class="pp">Marketing Agency · Freelance</div>
+        <div class="pd">Full marketing agency site with SEO, paid, social, brand strategy, and virtual assets positioning. Clean editorial design with a full playbook and contact flow.</div>
+        <div class="pl">View site →</div>
+      </a>
+
+      <a class="pc rv d2" href="https://mart-r5b8.onrender.com/" target="_blank" rel="noopener">
+        <div class="pi">008</div>
+        <div class="pe">🛒</div>
+        <div class="pt">Best Pick Mart</div>
+        <div class="pp">E-Commerce · Shopify · Live</div>
+        <div class="pd">Premium fresh produce e-commerce app with Shopify backend, full category browsing, cart, auth, and same-day delivery flow. 158+ products. Deployed on Render.</div>
+        <div class="pl">Visit store →</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section class="tech-s">
+  <div class="tech-i">
+    <div class="s-lbl rv">03 — Tech I work with</div>
+    <h2 class="s-h rv d1">Every layer of<br><em>the stack.</em></h2>
+    <div class="tg">
+      <div class="tt rv"><div class="tt-e">🐍</div><div class="tt-n">Python</div><div class="tt-c">Backend</div></div>
+      <div class="tt rv d1"><div class="tt-e">⚡</div><div class="tt-n">FastAPI</div><div class="tt-c">API Layer</div></div>
+      <div class="tt rv d2"><div class="tt-e">🗄️</div><div class="tt-n">PostgreSQL</div><div class="tt-c">Database</div></div>
+      <div class="tt rv d3"><div class="tt-e">🔗</div><div class="tt-n">n8n</div><div class="tt-c">Automation</div></div>
+      <div class="tt rv d4"><div class="tt-e">☁️</div><div class="tt-n">AWS</div><div class="tt-c">Cloud / IoT</div></div>
+      <div class="tt rv"><div class="tt-e">🧠</div><div class="tt-n">LLaMA 3.3</div><div class="tt-c">LLM / AI</div></div>
+      <div class="tt rv d1"><div class="tt-e">🎭</div><div class="tt-n">Playwright</div><div class="tt-c">Scraping</div></div>
+      <div class="tt rv d2"><div class="tt-e">⚛️</div><div class="tt-n">React</div><div class="tt-c">Frontend</div></div>
+      <div class="tt rv d3"><div class="tt-e">🚀</div><div class="tt-n">Vercel</div><div class="tt-c">Deploy</div></div>
+      <div class="tt rv d4"><div class="tt-e">🔄</div><div class="tt-n">RAG Pipelines</div><div class="tt-c">AI Infra</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="ach" id="achievements">
+  <div class="ach-i">
+    <div class="s-lbl rv">04 — Recognition</div>
+    <h2 class="s-h rv d1">Built to compete.<br><em>Recognised for it.</em></h2>
+    <div class="ag">
+      <div class="ac rv">
+        <div class="ac-b">Global Finalist</div>
+        <div class="ac-yr">Mar 2025</div>
+        <div class="ac-e">🏆</div>
+        <div class="ac-t">Google Girl Hackathon Finalist</div>
+        <div class="ac-d">Top 78 out of 58,000 applicants worldwide. Presented a GenAI and ML-powered Medical Assistant with RAG architecture and 92% diagnostic accuracy.</div>
+      </div>
+      <div class="ac rv d1">
+        <div class="ac-b">Finalist</div>
+        <div class="ac-yr">Jan 2024</div>
+        <div class="ac-e">🌱</div>
+        <div class="ac-t">Bala Kamalam Environmental Fund</div>
+        <div class="ac-d">IoT-enabled smart system for sustainable farming, increasing agricultural efficiency by 30%. Recognised nationally for environmental technology impact.</div>
+      </div>
+      <div class="ac rv d2">
+        <div class="ac-b">Top 17 Teams</div>
+        <div class="ac-yr">Nov 2023</div>
+        <div class="ac-e">🤝</div>
+        <div class="ac-t">Together 4.0 Competition</div>
+        <div class="ac-d">Top 17 teams globally. Mentorship from Schliuch Business School, Canada. Cross-disciplinary innovation and business strategy.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="c-i">
+    <div class="s-lbl rv">05 — Get in touch</div>
+    <h2 class="c-h rv d1">Let's build<br><em>something real.</em></h2>
+    <p class="c-sub rv d2">Open to full-time roles, freelance contracts, and collaborations. Especially interested in London-based opportunities from June 2026.</p>
+    <div class="c-btns rv d3">
+      <a class="cb-p" href="mailto:vigasinimit@gmail.com">vigasinimit@gmail.com →</a>
+      <a class="cb-g" href="https://linkedin.com/in/vigasinikamalanathan" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="cb-g" href="https://github.com/vigasinii" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="cb-g" href="https://www.freelancer.com/u/vigasini2" target="_blank" rel="noopener">Freelancer ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-n">Vigasini K.</div>
+  <div class="f-c">© 2026 · Chennai, India</div>
+  <div class="f-l">
+    <a class="f-a" href="https://github.com/vigasinii" target="_blank" rel="noopener">GitHub</a>
+    <a class="f-a" href="https://linkedin.com/in/vigasinikamalanathan" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="f-a" href="mailto:vigasinimit@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+},{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
